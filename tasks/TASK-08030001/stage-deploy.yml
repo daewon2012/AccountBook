@@ -1,0 +1,62 @@
+name: Stage Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  deployments: write
+
+env:
+  STAGE_APP_URL: ${{ vars.STAGE_APP_URL }}
+
+jobs:
+  deploy-stage:
+    runs-on: ubuntu-latest
+    environment: stage
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Trigger stage deployment
+        run: |
+          echo "Deploying latest main to stage..."
+          # Replace with real deployment command
+          # ex) helm upgrade --install accountbook-stage ./deploy/chart --namespace stage
+
+      - name: Wait for rollout
+        run: |
+          echo "Waiting for rollout to finish..."
+          sleep 20
+
+      - name: Smoke test
+        run: |
+          if [ -z "${STAGE_APP_URL}" ]; then
+            echo "STAGE_APP_URL is empty. Set repository variable STAGE_APP_URL." >&2
+            exit 1
+          fi
+          curl -fsS "${STAGE_APP_URL}/health" > /dev/null
+
+      - name: Generate release note summary
+        run: |
+          echo "### Stage deployment" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Commit: $GITHUB_SHA" >> "$GITHUB_STEP_SUMMARY"
+          echo "- URL: ${STAGE_APP_URL}" >> "$GITHUB_STEP_SUMMARY"
+
+  notify-slack:
+    runs-on: ubuntu-latest
+    needs: deploy-stage
+    if: always()
+    steps:
+      - name: Notify Slack
+        uses: slackapi/slack-github-action@v1.27.0
+        with:
+          payload: |
+            {
+              "text": "[Stage Deploy] status=${{ needs.deploy-stage.result }} repo=${{ github.repository }} sha=${{ github.sha }}"
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
