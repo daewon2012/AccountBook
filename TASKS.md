@@ -1,4 +1,4 @@
-## 기획
+﻿## 기획
 이름 : TASK-00000000
 상태 : DONE
 목표 :
@@ -109,38 +109,37 @@
 의존 : [TASK-00000004, TASK-00000005]
 
 이름 : TASK-00000007
-상태 : TODO
+상태 : DONE
 목표 :
   - 웹과 모바일 UI/UX 정의, 시나리오와 디자인 산출물을 하나로 통합한다.
   - ## 인터페이스의 TASK-02 및 TASK-03 구현 작업별 계획을 작성한다.
 작업 지시 :
   1. 입력 자료를 분석한다.
-    - tasks/TASK-00000000/features.md에서 핵심 기능과 사용자 행동을 추출한다.
+    - features.md에서 핵심 기능과 사용자 행동을 추출한다.
     - Architectures.md에서 Web, Mobile, API의 책임과 기술 제약을 확인한다.
     - TESTS.md에서 Web Vitest, Mobile Jest, 접근성 및 상태 검증 기준을 확인한다.
   2. 웹과 모바일이 공유할 정보 구조와 업무 용어를 먼저 정의한다.
     - 대시보드, 거래 목록, 거래 입력, 예산, 계좌·자산, 리포트, 설정을 공통 화면 영역으로 사용한다.
     - 거래 등록, 필터된 거래 조회, 예산 확인, 리포트 탐색, 백업·복원을 핵심 흐름으로 사용한다.
     - 로딩, 빈 상태, 오류, 재시도, 위험 작업 확인과 접근성 원칙을 모든 화면에 적용한다.
-  3. tasks/TASK-00000007/web-screens.md를 생성한다.
+  3. web-screens.md를 생성한다.
     - 화면 ID, 화면명, 목적과 핵심 구성을 표로 작성한다.
     - 데스크톱 사이드바, 반응형 내비게이션과 빠른 거래 등록 진입점을 정의한다.
-  4. tasks/TASK-00000007/web-scenarios.md를 생성한다.
+  4. web-scenarios.md를 생성한다.
     - 첫 거래 등록, 거래 조회·수정, 예산 확인, 자산·리포트 확인, 백업·복원 시나리오를 단계별로 작성한다.
     - 성공 흐름과 저장 실패·복원 실패 흐름, 화면 이동 요약을 포함한다.
-  5. tasks/TASK-00000007/mobile-screens.md를 생성한다.
+  5. mobile-screens.md를 생성한다.
     - 화면 ID, 화면명, 목적과 모바일 핵심 구성을 표로 작성한다.
     - 하단 탭, 거래 등록 플로팅 버튼, 더보기, 안전 영역과 한 손 조작 기준을 정의한다.
-  6. tasks/TASK-00000007/mobile-scenarios.md를 생성한다.
+  6. mobile-scenarios.md를 생성한다.
     - 빠른 거래 등록, 거래 탐색·수정, 예산 초과 확인, 리포트 탐색, 백업·복원 시나리오를 단계별로 작성한다.
     - 키보드, 목록 위치 유지, 새로고침, 오프라인·실패 복구와 화면 이동 요약을 포함한다.
-  7. tasks/TASK-00000007/features.md를 생성한다.
+  7. features.md를 생성한다.
     - Web과 Mobile로 구분하고 각 플랫폼 아래 공통, 대시보드, 거래목록, 거래입력, 예산, 계좌자산, 리포트, 설정 카테고리를 둔다.
     - TASK ID, 상태와 의존 같은 관리 정보는 제외하고 사용자에게 제공할 기능과 관찰 가능한 동작만 기록한다.
   8. 화면 목록과 시나리오를 기준으로 화면별 PNG를 생성한다.
     - Web: dashboard.png, transactions.png, transaction-form.png, budgets.png, accounts.png, reports.png, settings.png
     - Mobile: mobile-dashboard.png, mobile-transactions.png, mobile-transaction-form.png, mobile-budgets.png, mobile-accounts.png, mobile-reports.png, mobile-settings.png
-    - 모든 파일은 tasks/TASK-00000007 폴더에 저장한다.
   9. features.md와 디자인을 기준으로 TASKS.md의 ## 인터페이스를 동기화한다.
     - Web 기능은 TASK-02, Mobile 기능은 TASK-03 계층에 등록한다.
     - 각 항목에 상태, 간략한 목표, 디자인 파일, 완료 조건과 핵심 기능 의존 관계를 기록한다.
@@ -150,9 +149,8 @@
     - TASKS.md의 모든 디자인 경로가 실제 PNG를 가리키는지 확인한다.
     - features.md와 ## 인터페이스 사이의 누락, 중복, ID 충돌과 잘못된 의존 관계를 확인한다.
 완료 조건 :
-  - 웹·모바일 UI/UX 산출물이 tasks/TASK-00000007에 통합되어 있다.
   - web-screens.md, web-scenarios.md, mobile-screens.md, mobile-scenarios.md와 features.md가 생성되어 있다.
-  - Web 7개와 Mobile 7개의 화면 디자인 PNG가 생성되어 있다.
+  - Web, Mobile 화면 디자인 PNG가 생성되어 있다.
   - 모든 인터페이스 구현 TASK에 상세 계획 문서가 있다.
   - 디자인 경로, 핵심 기능 의존, 상태 처리, 접근성과 테스트 계획이 명시되어 있다.
 의존 : [TASK-00000004]
