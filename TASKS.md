@@ -28,12 +28,12 @@
 이름 : TASK-00000003
 상태 : DONE
 목표 :
-  - 가계부 시스템의 Architecture를 설계하고, Web/Server/Database/Proxy/배포 구조를 포함한 기술 스택과 계층 분리를 정의한 뒤 세부 작업 TASK 목록 생성 기준을 만든다.
+  - 가계부 시스템의 System Architecture를 설계하고, Web/Server/Database/Proxy/배포 구조를 포함한 기술 스택과 계층 분리를 정의한 뒤 세부 작업 TASK 목록 생성 기준을 만든다.
   - 이전 작업에서 생성된 Category는 수정하지 않고 Archetecture Category는 기존 Categoryㅇ 추가한다.
   - '## 아키텍처'라는 category로 묶는다.
   - TASK 번호는 07로 시작해줘
 완료 조건 :
-  - Web, Server, Database, Proxy, ORM, Cache/Queue, File Storage의 기술 구성이 정의된다.
+  - Web, Mobile, Server, Database, Proxy, ORM, Cache/Queue, File Storage의 기술 구성이 정의된다.
   - TypeScript 기반의 공통 개발 언어와 배포 토폴로지가 정의된다.
   - Domain, Application, Interface, Infrastructure, Cross-cutting 계층이 분리되어 있다.
   - TASKS.md에 category로 나누어진 TASK 목록이 있다.
@@ -119,19 +119,28 @@
   - 작업 내용에 사용할 화면 Desing 파일 이름을 명시하고 있다.
 의존 : [TASK-00000009]
 
-이름 : TASK-00000011
-상태 : IDEA
+이름 : TASK-00000012
+상태 : DONE
 목표 :
-  - TASK-00000004 에서 디자인된 Architecture를 검토하고 필요한 툴이나 서버의 설치 작업 목록을 작성하고 계획을 세운다.
+  - TASK-00000004 에서 디자인된 Architecture와 Architectures.md를 검토하고 필요한 툴이나 서버의 설치 작업 목록을 작성하고 계획을 세운다.
+  - 주로 서버 설치와 기본 source 생서이다.
   - Category 이름은 ## Install 이다.
   - TASKS.md에 ## Install Category 에 묶고 TASK 이름은 TASK-09로 시작한다.
   - 설치 작업 순서를 작성한다.
-  - 웹과 모바일은 Flutter로 개발한다.
 완료 조건 :
   - 개발에 필요한 툴이 모두 설치되어 있다.
   - 운영에 필요한 어플리케이션이 모두 설치되어 있다.
+  - 소스를 개발 할 수 있게 기본 폴더가 준비돠어 있다.
 의존 : [TASK-00000004]
 
+이름 : TASK-00000013
+상태 : DONE
+목표 :
+  - TASK-00000012에서 생성된 세부 작업 TASK 목록에 대해서 계획을 세워줘.
+  - 필요한 제품 이름도 포함해서 구체적으로 계획을 세워줘.
+완료 조건 :
+  - tasks/ 폴더에 TASKS.md에 있는 작업 목록에 대해서 계획이 세워져서 파일에 저장되어 있다.
+의존 : [TASK-00000012]
 
 ## 핵심 기능
 
@@ -1145,6 +1154,31 @@
   - 알림/대시보드/로그 추적 경로가 정의된다.
 의존 : [TASK-07050000]
 
+### 모바일
+이름 : TASK-07060000
+상태 : DONE
+목표 : 모바일 아키텍처 기준과 프로젝트 구조를 정의한다.
+완료 조건 :
+  - React Native + Expo + TypeScript 기준이 문서화되어 있다.
+  - 화면, 상태, API, 기기 기능의 책임과 의존 방향이 분리되어 있다.
+의존 : [TASK-00000003]
+
+이름 : TASK-07060001
+상태 : PLAN
+목표 : 모바일 앱 폴더 구조와 내비게이션 규칙을 확정한다.
+완료 조건 :
+  - 앱 route group, 탭, 모달과 인증 진입 규칙이 정의된다.
+  - 공통 UI, 기능 모듈, 기기 Adapter의 위치와 의존 규칙이 정의된다.
+의존 : [TASK-07060000]
+
+이름 : TASK-07060002
+상태 : PLAN
+목표 : 모바일 상태, API 연동과 오프라인 복구 패턴을 정의한다.
+완료 조건 :
+  - 상태 종류별 소유권과 저장 위치가 정의된다.
+  - 네트워크 실패, 인증 만료, 중복 요청과 데이터 충돌의 처리 규칙이 정의된다.
+의존 : [TASK-07060001, TASK-07010002]
+
 ## CI/CD
 이름 : TASK-08000000
 상태 : DONE
@@ -1265,3 +1299,141 @@
   - GitHub Environment/Secret 분리 정책이 정의된다.
   - 시크릿 회전 주기와 접근 정책이 정의된다.
 의존 : [TASK-08040000, TASK-00000005]
+
+## Install
+
+### 개발환경
+이름 : TASK-09000000
+상태 : PLAN
+목표 : Windows 11과 WSL2에 공통 개발 도구를 설치하고 버전을 고정한다.
+제품 : Git, WSL2 Ubuntu 24.04 LTS, Docker Desktop, Node.js 22 LTS, Corepack, pnpm 9.x, VS Code
+완료 조건 :
+  - Git, WSL2, Docker, Node.js, pnpm과 VS Code의 설치 및 버전 검증이 통과한다.
+  - Docker Desktop의 WSL 통합과 Corepack 기반 pnpm 활성화가 완료되어 있다.
+의존 : [TASK-00000012]
+
+### 모노레포
+이름 : TASK-09010000
+상태 : PLAN
+목표 : 웹, 모바일, API와 공통 패키지를 수용하는 pnpm 모노레포 기본 폴더를 생성한다.
+제품 : pnpm workspace, TypeScript, ESLint, Prettier
+완료 조건 :
+  - apps/web, apps/mobile, apps/api, apps/worker와 packages 공통 폴더가 준비되어 있다.
+  - 루트 install, lint, typecheck, test와 build 스크립트 계약이 정의되어 있다.
+의존 : [TASK-09000000, TASK-07000001, TASK-07010001, TASK-07060001]
+
+### 공통계약
+이름 : TASK-09020000
+상태 : PLAN
+목표 : 공통 TypeScript 설정, API 계약과 코드 품질 설정 패키지를 생성한다.
+제품 : TypeScript, OpenAPI, ESLint, Prettier, Zod
+완료 조건 :
+  - TypeScript, ESLint과 Prettier 공통 설정을 workspace에서 재사용할 수 있다.
+  - OpenAPI 기반 Web/Mobile client 타입 생성 위치와 명령이 준비되어 있다.
+의존 : [TASK-09010000, TASK-07010002]
+
+### 웹소스
+이름 : TASK-09030000
+상태 : PLAN
+목표 : 웹 애플리케이션의 기본 source와 실행 구성을 생성한다.
+제품 : Next.js 14, React 18, Tailwind CSS, shadcn/ui, TanStack Query, Zustand, Axios
+완료 조건 :
+  - apps/web이 개발 모드와 production build로 실행된다.
+  - App Router, 공통 layout, API client와 환경변수 검증 구조가 준비되어 있다.
+의존 : [TASK-09020000, TASK-07000002]
+
+### 모바일소스
+이름 : TASK-09040000
+상태 : PLAN
+목표 : iOS/Android 모바일 애플리케이션의 기본 source와 실행 구성을 생성한다.
+제품 : React Native, Expo, Expo Router, TanStack Query, Zustand, Expo SecureStore
+완료 조건 :
+  - apps/mobile이 Expo 개발 환경에서 실행된다.
+  - 기본 route group, API client, 보안 저장소와 환경 설정 Adapter가 준비되어 있다.
+의존 : [TASK-09020000, TASK-07060002]
+
+### 서버소스
+이름 : TASK-09050000
+상태 : PLAN
+목표 : API와 비동기 Worker의 기본 source 및 계층 구조를 생성한다.
+제품 : NestJS, Swagger/OpenAPI, Passport, JWT, BullMQ, Pino
+완료 조건 :
+  - apps/api와 apps/worker가 독립적으로 빌드 및 실행된다.
+  - Domain, Application, Interface, Infrastructure 경계와 health endpoint가 준비되어 있다.
+의존 : [TASK-09020000, TASK-07010002, TASK-07040002]
+
+### 데이터서비스
+이름 : TASK-09060000
+상태 : PLAN
+목표 : 개발용 데이터베이스, Cache/Queue와 File Storage를 컨테이너로 구성한다.
+제품 : PostgreSQL 16, Prisma, PgBouncer, Redis 7, MinIO, Docker Compose
+완료 조건 :
+  - PostgreSQL, PgBouncer, Redis와 MinIO 컨테이너가 health check를 통과한다.
+  - Prisma 초기 schema, migration과 test 전용 database 구성이 준비되어 있다.
+  - 영속 volume과 초기화 절차가 문서화되어 있다.
+의존 : [TASK-09010000, TASK-07020002, TASK-07040000]
+
+### 프록시
+이름 : TASK-09070000
+상태 : PLAN
+목표 : 개발 및 운영용 reverse proxy 기본 구성을 생성한다.
+제품 : Nginx, Let's Encrypt, Certbot
+완료 조건 :
+  - Nginx가 웹과 /api 요청을 각각 Next.js와 NestJS로 전달한다.
+  - 보안 header, 압축, cache, rate limit과 TLS 적용 위치가 구성되어 있다.
+의존 : [TASK-09030000, TASK-09050000, TASK-07030002]
+
+### 테스트환경
+이름 : TASK-09080000
+상태 : PLAN
+목표 : TESTS.md에 정의된 테스트와 정적 검증 도구를 설치하고 기본 test를 생성한다.
+제품 : Vitest, Jest, Supertest, Playwright, ESLint, TypeScript
+완료 조건 :
+  - Web, Mobile, API의 핵심 smoke unit test가 각각 하나 이상 통과한다.
+  - API/PostgreSQL integration test와 Playwright smoke E2E가 통과한다.
+  - 루트 lint, typecheck, test와 coverage 명령이 동작한다.
+의존 : [TASK-09030000, TASK-09040000, TASK-09050000, TASK-09060000]
+
+### 관측성
+이름 : TASK-09090000
+상태 : PLAN
+목표 : 로컬 개발과 운영에 필요한 관측성 기본 서비스를 구성한다.
+제품 : OpenTelemetry, Prometheus, Grafana, Sentry
+완료 조건 :
+  - API와 Worker의 trace 및 metric이 수집된다.
+  - Grafana 기본 dashboard와 Sentry 오류 추적 연결 지점이 준비되어 있다.
+  - secret 또는 개인정보가 telemetry에 기록되지 않는다.
+의존 : [TASK-09050000, TASK-09060000, TASK-07050000]
+
+### 로컬통합
+이름 : TASK-09100000
+상태 : PLAN
+목표 : 모든 로컬 구성요소를 한 번에 실행하고 기본 요청 흐름을 검증한다.
+제품 : Docker Compose, pnpm, Playwright
+완료 조건 :
+  - Web과 Mobile client에서 Nginx를 거쳐 API 및 PostgreSQL까지 연결된다.
+  - Redis Queue와 MinIO 파일 업로드 smoke test가 통과한다.
+  - 재현 가능한 시작, 종료, 초기화와 문제 해결 절차가 문서화되어 있다.
+의존 : [TASK-09070000, TASK-09080000, TASK-09090000]
+
+### 운영서버
+이름 : TASK-09110000
+상태 : PLAN
+목표 : Stage와 Production 서버에 필요한 runtime 및 관리 서비스를 설치한다.
+제품 : Linux, Docker Engine, Nginx, PostgreSQL, PgBouncer, Redis, S3 호환 Storage, Certbot
+완료 조건 :
+  - Stage와 Production의 Web, API, Worker, DB, Redis, Storage와 Proxy가 health check를 통과한다.
+  - env.pub의 secret이 외부 secret 저장소에 구성되고 소스 및 이미지와 분리되어 있다.
+  - 백업, TLS 갱신, 로그 보관과 최소 권한 설정이 적용되어 있다.
+의존 : [TASK-09100000, TASK-07040001, TASK-08030000, TASK-08040002]
+
+### 배포검증
+이름 : TASK-09120000
+상태 : PLAN
+목표 : 설치된 운영 구성의 배포, 복구와 운영 인수 검증을 완료한다.
+제품 : GitHub Actions, Playwright, PostgreSQL Backup, Grafana, Sentry
+완료 조건 :
+  - Stage 배포와 smoke E2E가 통과하고 Production 승인 절차가 동작한다.
+  - 애플리케이션 rollback과 PostgreSQL 복원 훈련이 성공한다.
+  - monitoring, alert, runbook과 설치 자산 목록이 운영 담당자에게 인계되어 있다.
+의존 : [TASK-09110000, TASK-08030001, TASK-08030002, TASK-07050002]

@@ -44,6 +44,10 @@
 - 예외 처리와 입력 검증을 누락하지 않는다.
 - 주석은 "무엇"보다 "왜"를 설명할 때만 짧게 사용한다.
 
+## 6) Architecture
+- code 작성시 핵심 기능에서 외부 Resource 직접 접근하지 않는다.
+- 핵심 기능에서 필요한 데이터는 
+
 ## 6) 테스트 규칙
 - 새 기능에는 최소 1개 이상의 핵심 테스트를 추가한다.
 - 버그 수정에는 재현 테스트를 우선 추가한다.
@@ -54,10 +58,17 @@
 - 파괴적 명령(대량 삭제, 히스토리 재작성 등)은 사용자 승인 없이 수행하지 않는다.
 - 대규모 포맷팅 변경은 요청이 있을 때만 수행한다.
 
-## 8) 커밋 메시지 가이드
+## 8) GIT 커밋 가이드
 - 형식: `type(scope): summary`
 - type 예시: `feat`, `fix`, `refactor`, `test`, `docs`, `chore`
 - summary는 50자 내외로 간결하게 작성한다.
+- main branch에 직접 작업하지 않는다.
+- feature branch를 만든다.
+- feature branch는 'master_'로 시작하고 작업 'TASK-'를 붙여서 만든다.
+- Task 하나당 하나의 commit을 만든다.
+  - Commit: TASK-xxxxxxxx: description
+- chat을 통해서 개벌적으로 지시한 작업은 Task를 만들지 않는다.
+- 작업이 끝나면 commit 하고 작업한 내용을 message로 commit에 포함한다.
 
 ## 9) 응답 형식 가이드
 - 먼저 결과를 짧게 말하고, 다음에 핵심 변경 사항을 bullet로 정리한다.
@@ -78,3 +89,13 @@
 - 테스트 또는 검증 근거가 있는가?
 - 변경 요약이 명확한가?
 
+## 12) 필요한 정보
+- 개발 시 env.dev 참조
+- Publish 시 env.pub 참조
+
+## Source 위치
+- 폴더는 src/ 이다.
+
+## 13) TEST
+- code를 생성하는 작업에는 반드시 TESTS.md를 참조한다.
+- 폴더는 tests/ 이다.
