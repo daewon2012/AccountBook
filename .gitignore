@@ -15,4 +15,7 @@ node_modules/
 .task-build/
 .next/
 coverage/
+dist/
+test-results/
+playwright-report/
 *.tsbuildinfo

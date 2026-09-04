@@ -11,9 +11,15 @@
     "build": "pnpm -r --if-present build",
     "lint": "pnpm -r --if-present lint",
     "typecheck": "pnpm -r --if-present typecheck",
-    "test": "pnpm -r --if-present test"
+    "test:unit": "pnpm --filter @accountbook/web test && pnpm --filter @accountbook/mobile test && pnpm --filter @accountbook/api test",
+    "test:integration": "cross-env DATABASE_URL=postgresql://accountbook:change-me@localhost:6432/accountbook pnpm --filter @accountbook/api test:integration",
+    "test:e2e": "playwright test",
+    "test:coverage": "pnpm --filter @accountbook/api test -- --coverage",
+    "test": "pnpm test:unit"
   },
   "devDependencies": {
+    "@playwright/test": "1.47.2",
+    "cross-env": "7.0.3",
     "eslint": "9.35.0",
     "prettier": "3.6.2",
     "typescript": "5.6.3"

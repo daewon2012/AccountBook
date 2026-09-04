@@ -1293,7 +1293,7 @@
 
 ### 테스트환경
 이름 : TASK-09080000
-상태 : PLAN
+상태 : DONE
 목표 : TESTS.md에 정의된 테스트와 정적 검증 도구를 설치하고 기본 test를 생성한다.
 제품 : Vitest, Jest, Supertest, Playwright, ESLint, TypeScript
 완료 조건 :
