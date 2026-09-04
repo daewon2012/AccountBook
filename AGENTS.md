@@ -69,6 +69,7 @@
   - Commit: TASK-xxxxxxxx: description
 - chat을 통해서 개벌적으로 지시한 작업은 Task를 만들지 않는다.
 - 작업이 끝나면 commit 하고 작업한 내용을 message로 commit에 포함한다.
+- commit 후 부모 branch로 이동해서 부모 branch에 merge 한다.
 
 ## 9) 응답 형식 가이드
 - 먼저 결과를 짧게 말하고, 다음에 핵심 변경 사항을 bullet로 정리한다.
