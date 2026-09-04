@@ -1252,7 +1252,7 @@
 
 ### 모바일소스
 이름 : TASK-09040000
-상태 : PLAN
+상태 : DONE
 목표 : iOS/Android 모바일 애플리케이션의 기본 source와 실행 구성을 생성한다.
 제품 : React Native, Expo, Expo Router, TanStack Query, Zustand, Expo SecureStore
 완료 조건 :
