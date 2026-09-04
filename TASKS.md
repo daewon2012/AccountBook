@@ -1262,7 +1262,7 @@
 
 ### 서버소스
 이름 : TASK-09050000
-상태 : PLAN
+상태 : DONE
 목표 : API와 비동기 Worker의 기본 source 및 계층 구조를 생성한다.
 제품 : NestJS, Swagger/OpenAPI, Passport, JWT, BullMQ, Pino
 완료 조건 :
