@@ -1222,7 +1222,7 @@
 
 ### 모노레포
 이름 : TASK-09010000
-상태 : PLAN
+상태 : DONE
 목표 : 웹, 모바일, API와 공통 패키지를 수용하는 pnpm 모노레포 기본 폴더를 생성한다.
 제품 : pnpm workspace, TypeScript, ESLint, Prettier
 완료 조건 :

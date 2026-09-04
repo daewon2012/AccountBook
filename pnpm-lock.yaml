@@ -1,0 +1,27 @@
+lockfileVersion: '9.0'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+importers:
+
+  .: {}
+
+  apps/api: {}
+
+  apps/mobile: {}
+
+  apps/worker: {}
+
+  packages/application:
+    dependencies:
+      '@accountbook/domain':
+        specifier: workspace:*
+        version: link:../domain
+
+  packages/config: {}
+
+  packages/contracts: {}
+
+  packages/domain: {}

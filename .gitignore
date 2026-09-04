@@ -1,0 +1,18 @@
+# Developer-specific environment values and production access details
+.env_dev.local
+.env_pub.local
+
+# Private keys must never be stored in the repository
+id_rsa
+id_ed25519
+*.pem
+*.key
+
+# Dependencies and generated output
+node_modules/
+.node_modules.partial-*/
+.pnpm-store/
+.task-build/
+.next/
+coverage/
+*.tsbuildinfo
