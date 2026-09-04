@@ -1,1 +1,1 @@
-{"name":"@accountbook/config","version":"0.1.0","private":true,"type":"module","exports":{}}
+{"name":"@accountbook/config","version":"0.1.0","private":true,"type":"module","exports":{"./tsconfig":"./tsconfig.base.json","./eslint":"./eslint.config.mjs","./prettier":"./prettier.config.mjs"},"scripts":{"test":"node --test src/config.test.mjs"},"peerDependencies":{"eslint":">=9","prettier":">=3","typescript":">=5.6"}}

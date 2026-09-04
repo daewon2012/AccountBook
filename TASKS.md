@@ -1232,7 +1232,7 @@
 
 ### 공통계약
 이름 : TASK-09020000
-상태 : PLAN
+상태 : DONE
 목표 : 공통 TypeScript 설정, API 계약과 코드 품질 설정 패키지를 생성한다.
 제품 : TypeScript, OpenAPI, ESLint, Prettier, Zod
 완료 조건 :

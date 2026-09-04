@@ -1,1 +1,1 @@
-{"name":"@accountbook/contracts","version":"0.1.0","private":true,"type":"module","exports":{}}
+{"name":"@accountbook/contracts","version":"0.1.0","private":true,"type":"module","exports":{"./problem":"./src/problem.ts","./generated":"./src/generated/api.ts"},"scripts":{"generate":"openapi-typescript openapi/accountbook.yaml -o src/generated/api.ts","check:generated":"pnpm generate && git diff --exit-code -- src/generated/api.ts"},"dependencies":{"zod":"3.25.76"},"devDependencies":{"openapi-typescript":"7.9.1"}}
