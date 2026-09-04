@@ -1,16 +1,19 @@
-<<<<<<< HEAD
 {
   "name": "accountbook",
   "private": true,
   "packageManager": "pnpm@9.15.9",
   "engines": { "node": ">=22" },
   "scripts": {
+    "contracts:generate": "pnpm --filter @accountbook/contracts generate",
+    "contracts:check": "pnpm --filter @accountbook/contracts check:generated",
     "build": "pnpm -r --if-present build",
     "lint": "pnpm -r --if-present lint",
     "typecheck": "pnpm -r --if-present typecheck",
     "test": "pnpm -r --if-present test"
+  },
+  "devDependencies": {
+    "eslint": "9.35.0",
+    "prettier": "3.6.2",
+    "typescript": "5.6.3"
   }
 }
-=======
-{"name":"accountbook","private":true,"packageManager":"pnpm@9.15.9","engines":{"node":">=22.13"},"scripts":{"dev:web":"pnpm --filter @accountbook/web dev","contracts:generate":"pnpm --filter @accountbook/contracts generate","contracts:check":"pnpm --filter @accountbook/contracts check:generated","build":"pnpm -r --if-present build","lint":"pnpm -r --if-present lint","typecheck":"pnpm -r --if-present typecheck","test":"pnpm -r --if-present test"},"devDependencies":{"eslint":"9.35.0","prettier":"3.6.2","typescript":"5.6.3"}}
->>>>>>> 3329822 (chore(config): TASK-09020000 add shared contracts)
