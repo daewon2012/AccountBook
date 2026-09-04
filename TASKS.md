@@ -1272,7 +1272,7 @@
 
 ### 데이터서비스
 이름 : TASK-09060000
-상태 : PLAN
+상태 : DONE
 목표 : 개발용 데이터베이스, Cache/Queue와 File Storage를 컨테이너로 구성한다.
 제품 : PostgreSQL 16, Prisma, PgBouncer, Redis 7, MinIO, Docker Compose
 완료 조건 :

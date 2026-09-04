@@ -1,0 +1,12 @@
+CREATE TYPE "TransactionType" AS ENUM ('INCOME', 'EXPENSE');
+CREATE TABLE "households" ("id" TEXT PRIMARY KEY, "name" TEXT NOT NULL, "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP, "updated_at" TIMESTAMP(3) NOT NULL);
+CREATE TABLE "categories" ("id" TEXT PRIMARY KEY, "household_id" TEXT NOT NULL REFERENCES "households"("id"), "name" TEXT NOT NULL);
+CREATE TABLE "accounts" ("id" TEXT PRIMARY KEY, "household_id" TEXT NOT NULL REFERENCES "households"("id"), "name" TEXT NOT NULL, "active" BOOLEAN NOT NULL DEFAULT true);
+CREATE TABLE "transactions" ("id" TEXT PRIMARY KEY, "household_id" TEXT NOT NULL REFERENCES "households"("id"), "type" "TransactionType" NOT NULL, "amount" BIGINT NOT NULL CHECK ("amount" > 0), "occurred_on" DATE NOT NULL, "category_id" TEXT NOT NULL REFERENCES "categories"("id"), "account_id" TEXT REFERENCES "accounts"("id"), "memo" VARCHAR(500), "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP, "updated_at" TIMESTAMP(3) NOT NULL);
+CREATE TABLE "budgets" ("id" TEXT PRIMARY KEY, "household_id" TEXT NOT NULL REFERENCES "households"("id"), "category_id" TEXT NOT NULL REFERENCES "categories"("id"), "month" DATE NOT NULL, "amount" BIGINT NOT NULL);
+CREATE TABLE "debts" ("id" TEXT PRIMARY KEY, "household_id" TEXT NOT NULL REFERENCES "households"("id"), "principal" BIGINT NOT NULL, "annual_rate" DECIMAL(7,4) NOT NULL);
+CREATE UNIQUE INDEX "categories_household_id_name_key" ON "categories"("household_id", "name");
+CREATE UNIQUE INDEX "accounts_household_id_name_key" ON "accounts"("household_id", "name");
+CREATE UNIQUE INDEX "budgets_household_id_category_id_month_key" ON "budgets"("household_id", "category_id", "month");
+CREATE INDEX "transactions_household_date_id_idx" ON "transactions"("household_id", "occurred_on" DESC, "id");
+CREATE INDEX "transactions_household_category_date_idx" ON "transactions"("household_id", "category_id", "occurred_on" DESC);

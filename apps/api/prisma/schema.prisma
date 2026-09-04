@@ -1,0 +1,89 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Household {
+  id           String        @id @default(uuid())
+  name         String
+  transactions Transaction[]
+  categories   Category[]
+  accounts     Account[]
+  budgets      Budget[]
+  debts        Debt[]
+  createdAt    DateTime      @default(now()) @map("created_at")
+  updatedAt    DateTime      @updatedAt @map("updated_at")
+  @@map("households")
+}
+
+model Category {
+  id           String        @id @default(uuid())
+  householdId  String        @map("household_id")
+  name         String
+  household    Household     @relation(fields: [householdId], references: [id])
+  transactions Transaction[]
+  budgets      Budget[]
+  @@unique([householdId, name])
+  @@map("categories")
+}
+
+model Account {
+  id           String        @id @default(uuid())
+  householdId  String        @map("household_id")
+  name         String
+  active       Boolean       @default(true)
+  household    Household     @relation(fields: [householdId], references: [id])
+  transactions Transaction[]
+  @@unique([householdId, name])
+  @@map("accounts")
+}
+
+model Transaction {
+  id          String          @id
+  householdId String          @map("household_id")
+  type        TransactionType
+  amount      BigInt
+  occurredOn  DateTime        @db.Date @map("occurred_on")
+  categoryId  String          @map("category_id")
+  accountId   String?         @map("account_id")
+  memo        String?         @db.VarChar(500)
+  household   Household       @relation(fields: [householdId], references: [id])
+  category    Category        @relation(fields: [categoryId], references: [id])
+  account     Account?        @relation(fields: [accountId], references: [id])
+  createdAt   DateTime        @default(now()) @map("created_at")
+  updatedAt   DateTime        @updatedAt @map("updated_at")
+  @@index([householdId, occurredOn(sort: Desc), id])
+  @@index([householdId, categoryId, occurredOn(sort: Desc)])
+  @@index([householdId, accountId, occurredOn(sort: Desc)])
+  @@map("transactions")
+}
+
+model Budget {
+  id          String     @id @default(uuid())
+  householdId String     @map("household_id")
+  categoryId  String     @map("category_id")
+  month       DateTime   @db.Date
+  amount      BigInt
+  household   Household  @relation(fields: [householdId], references: [id])
+  category    Category   @relation(fields: [categoryId], references: [id])
+  @@unique([householdId, categoryId, month])
+  @@map("budgets")
+}
+
+model Debt {
+  id          String    @id @default(uuid())
+  householdId String    @map("household_id")
+  principal   BigInt
+  annualRate  Decimal   @map("annual_rate") @db.Decimal(7, 4)
+  household   Household @relation(fields: [householdId], references: [id])
+  @@map("debts")
+}
+
+enum TransactionType {
+  INCOME
+  EXPENSE
+}

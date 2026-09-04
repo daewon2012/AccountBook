@@ -1,0 +1,42 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-accountbook}
+      POSTGRES_USER: ${POSTGRES_USER:-accountbook}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-change-me}
+    volumes: [postgres-data:/var/lib/postgresql/data]
+    healthcheck: { test: [CMD-SHELL, "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"], interval: 5s, timeout: 3s, retries: 20 }
+    networks: [data]
+  pgbouncer:
+    image: edoburu/pgbouncer:v1.23.1-p0
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: ${POSTGRES_DB:-accountbook}
+      DB_USER: ${POSTGRES_USER:-accountbook}
+      DB_PASSWORD: ${POSTGRES_PASSWORD:-change-me}
+      AUTH_TYPE: scram-sha-256
+    ports: ["127.0.0.1:6432:5432"]
+    depends_on: { postgres: { condition: service_healthy } }
+    healthcheck: { test: [CMD-SHELL, "pg_isready -h 127.0.0.1 -p 5432 -U $${DB_USER}"], interval: 5s, timeout: 3s, retries: 20 }
+    networks: [data]
+  redis:
+    image: redis:7-alpine
+    command: [redis-server, --appendonly, "yes"]
+    ports: ["127.0.0.1:6379:6379"]
+    volumes: [redis-data:/data]
+    healthcheck: { test: [CMD, redis-cli, ping], interval: 5s, timeout: 3s, retries: 20 }
+    networks: [data]
+  minio:
+    image: minio/minio:RELEASE.2024-12-18T13-15-44Z
+    command: server /data --console-address :9001
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER:-accountbook}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:-change-me-now}
+    ports: ["127.0.0.1:9000:9000", "127.0.0.1:9001:9001"]
+    volumes: [minio-data:/data]
+    healthcheck: { test: [CMD, mc, ready, local], interval: 5s, timeout: 3s, retries: 20 }
+    networks: [data]
+networks: { data: {} }
+volumes: { postgres-data: {}, redis-data: {}, minio-data: {} }
