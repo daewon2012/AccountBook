@@ -1,0 +1,6 @@
+import {fireEvent,render,screen,within} from '@testing-library/react';
+import {vi} from 'vitest';
+import {AppShell} from './app-shell';
+vi.mock('next/navigation',()=>({usePathname:()=>'/transactions'}));
+HTMLDialogElement.prototype.showModal=function(){this.setAttribute('open','')};HTMLDialogElement.prototype.close=function(){this.removeAttribute('open')};
+describe('AppShell',()=>{it('shares destinations and exposes the current page accessibly',()=>{render(<AppShell><h1>거래</h1></AppShell>);expect(screen.getByRole('link',{name:'본문으로 건너뛰기'})).toHaveAttribute('href','#main-content');expect(screen.getByRole('main')).toContainElement(screen.getByRole('heading',{name:'거래'}));const desktop=screen.getByRole('navigation',{name:'주요 메뉴'});expect(within(desktop).getByRole('link',{name:'거래'})).toHaveAttribute('aria-current','page');expect(screen.getAllByRole('link',{name:'거래 등록'})).toHaveLength(2)});it('opens and closes the mobile menu while restoring focus',()=>{render(<AppShell><h1>거래</h1></AppShell>);const trigger=screen.getByRole('button',{name:'메뉴'});fireEvent.click(trigger);const dialog=screen.getByRole('dialog');expect(dialog).toHaveAttribute('open');fireEvent.click(within(dialog).getByRole('button',{name:'닫기'}));expect(dialog).not.toHaveAttribute('open');expect(trigger).toHaveFocus()})});

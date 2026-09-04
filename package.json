@@ -4,6 +4,7 @@
   "packageManager": "pnpm@9.15.9",
   "engines": { "node": ">=22" },
   "scripts": {
+    "dev:web": "pnpm --filter @accountbook/web dev",
     "contracts:generate": "pnpm --filter @accountbook/contracts generate",
     "contracts:check": "pnpm --filter @accountbook/contracts check:generated",
     "build": "pnpm -r --if-present build",

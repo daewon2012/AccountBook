@@ -1,0 +1,12 @@
+:root{color-scheme:light;--navy:#17233c;--blue:#3459d4;--surface:#f5f7fb;--border:#dce2ed;--text:#172033}
+*{box-sizing:border-box}body{margin:0;color:var(--text);background:var(--surface);font-family:Arial,sans-serif}a{color:inherit}button{font:inherit}
+.skip-link{position:fixed;left:1rem;top:-5rem;z-index:100;background:white;padding:.75rem 1rem}.skip-link:focus{top:1rem}
+.app-shell{min-height:100vh;display:grid;grid-template-columns:15rem 1fr}.desktop-sidebar{background:var(--navy);color:white;padding:1.5rem 1rem}
+.brand{display:block;font-size:1.2rem;font-weight:700;margin-bottom:1.5rem;text-decoration:none}.nav-list{display:grid;gap:.35rem;list-style:none;margin:0;padding:0}
+.nav-link{display:block;border-radius:.5rem;padding:.7rem .8rem;text-decoration:none}.nav-link[aria-current='page']{background:white;color:var(--navy);font-weight:700;box-shadow:inset 4px 0 var(--blue)}
+.shell-content{min-width:0}.topbar{min-height:4.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1rem 1.5rem;background:white;border-bottom:1px solid var(--border)}
+.quick-add{background:var(--blue);color:white;border-radius:.5rem;padding:.7rem 1rem;text-decoration:none;font-weight:700}.main-content{padding:1.5rem}.mobile-header{display:none}
+.menu-button,.close-button,.retry-button{border:1px solid var(--border);border-radius:.5rem;background:white;padding:.65rem .85rem}.mobile-dialog{border:0;padding:0;width:min(20rem,88vw);margin:0 0 0 auto;min-height:100vh}
+.mobile-dialog::backdrop{background:rgb(10 18 35 / 55%)}.mobile-dialog-inner{padding:1rem}.dialog-heading{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem}
+.status-panel{max-width:36rem;margin:4rem auto;padding:1.5rem;border:1px solid var(--border);border-radius:.75rem;background:white}
+@media(max-width:767px){.app-shell{display:block}.desktop-sidebar,.topbar{display:none}.mobile-header{display:flex;position:sticky;top:0;z-index:10;align-items:center;justify-content:space-between;gap:.75rem;padding:.75rem 1rem;background:white;border-bottom:1px solid var(--border)}.mobile-header .brand{margin:0;color:var(--navy)}.main-content{padding:1rem}}

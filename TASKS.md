@@ -1242,7 +1242,7 @@
 
 ### 웹소스
 이름 : TASK-09030000
-상태 : PLAN
+상태 : DONE
 목표 : 웹 애플리케이션의 기본 source와 실행 구성을 생성한다.
 제품 : Next.js 14, React 18, Tailwind CSS, shadcn/ui, TanStack Query, Zustand, Axios
 완료 조건 :
