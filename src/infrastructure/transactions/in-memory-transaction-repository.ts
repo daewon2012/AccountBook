@@ -12,4 +12,8 @@ export class InMemoryTransactionRepository implements TransactionRepository {
   async findById(id: string): Promise<Transaction | null> {
     return this.transactions.get(id) ?? null;
   }
+
+  async deleteById(id: string): Promise<boolean> {
+    return this.transactions.delete(id);
+  }
 }

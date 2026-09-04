@@ -4,4 +4,5 @@ import { Transaction } from '../../domain/transactions/transaction';
 export interface TransactionRepository {
   save(transaction: Transaction): Promise<void>;
   findById(id: string): Promise<Transaction | null>;
+  deleteById(id: string): Promise<boolean>;
 }
