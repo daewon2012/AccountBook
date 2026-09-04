@@ -1212,7 +1212,7 @@
 
 ### 개발환경
 이름 : TASK-09000000
-상태 : PLAN
+상태 : DONE
 목표 : Windows 11과 WSL2에 공통 개발 도구를 설치하고 버전을 고정한다.
 제품 : Git, WSL2 Ubuntu 24.04 LTS, Docker Desktop, Node.js 22 LTS, Corepack, pnpm 9.x, VS Code
 완료 조건 :
