@@ -24,6 +24,16 @@ export interface paths {
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
+        Transaction: {
+            id: string;
+            /** @enum {string} */
+            type: "INCOME" | "EXPENSE";
+            amount: number;
+            /** Format: date */
+            occurredOn: string;
+            categoryId: string;
+            memo?: string;
+        };
         ProblemDetails: {
             /** Format: uri */
             type: string;

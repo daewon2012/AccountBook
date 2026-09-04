@@ -22,6 +22,16 @@ paths:
                     enum: [ok]
 components:
   schemas:
+    Transaction:
+      type: object
+      required: [id, type, amount, occurredOn, categoryId]
+      properties:
+        id: { type: string, minLength: 1 }
+        type: { type: string, enum: [INCOME, EXPENSE] }
+        amount: { type: integer, minimum: 1 }
+        occurredOn: { type: string, format: date }
+        categoryId: { type: string, minLength: 1 }
+        memo: { type: string, maxLength: 500 }
     ProblemDetails:
       type: object
       required: [type, title, status, code]

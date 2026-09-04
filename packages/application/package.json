@@ -1,1 +1,19 @@
-{"name":"@accountbook/application","version":"0.1.0","private":true,"type":"module","exports":{},"dependencies":{"@accountbook/domain":"workspace:*"}}
+{
+  "name": "@accountbook/application",
+  "version": "0.1.0",
+  "private": true,
+  "type": "commonjs",
+  "exports": {
+    "./transactions": "./src/transactions/transaction-repository.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "build": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "@accountbook/domain": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "5.6.3"
+  }
+}
